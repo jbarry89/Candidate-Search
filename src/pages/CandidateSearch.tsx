@@ -12,32 +12,38 @@ const CandidateSearch = () => {
   })
 
   useEffect(() => {
-    const fetchCandidate = async () => {
-      try {
-        setLoading(true);
-        const candidates = await searchGithub();
-        if(candidates.length){
-          const candidateData = await searchGithubUser(candidates[0].login);
-          setCandidate(candidateData);
-        }else {
-          setCandidate(null);
-        }
-      }catch (err: any) {
-        setError(err.message);
-      }finally{
-        setLoading(false);
-      }
-    };
-
     fetchCandidate();
   }, []);
 
+  const fetchCandidate = async () => {
+    try {
+      setLoading(true);
+      const candidates = await searchGithub();
+      if(candidates.length){
+        const candidateData = await searchGithubUser(candidates[0].login);
+        setCandidate(candidateData);
+      }else {
+        setCandidate(null);
+      }
+    }catch (err: any) {
+      setError(err.message);
+    }finally{
+      setLoading(false);
+    }
+  };
+
   const handleSave = () => {
-    //Implement Save Functionality Code
+    if (candidate){
+      setPotentialCandidates(prev => {
+        const updated = [...prev, candidate];
+        localStorage.setItem('potentialCandidates', JSON.stringify(updated));
+        return updated;
+      });
+      fetchCandidate();
+    }
   };
 
   const handleSkip = () => {
-    // Implement skip functionality code
     fetchCandidate();
   };
 
@@ -53,7 +59,7 @@ const CandidateSearch = () => {
   return(
     <div className='card-container'>
       <h1>CandidateSearch</h1>
-      {candidate ?(
+      {candidate ? (
         <div className='candidate-card'>
           <img src={candidate.avatar_url} alt={`${candidate.login}'s avatar`} className='avatar' />
           <h2>{candidate.name} <span>({candidate.login})</span></h2>
