@@ -1,33 +1,56 @@
-# React + TypeScript + Vite
+# My-Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+  [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+  
+  ## Table of Contents
+  
+  * [Description](#description)
+  * [Installation](#installation)
+  * [Usage](#usage)
+  * [Contributing](#contributing)
+  * [Test](#test)
+  * [License](#license)
+  * [Questions](#questions)
+  
+  ## Description
+  This application uses GitHub API to search for potential candidates suitable for hiring. Users can browse through candidates' profiles, save promising candidates to a shortlist, and review the saved list later.
 
-Currently, two official plugins are available:
+  ## Installation
+  Installation Required:  JavaScript, Node JS,  `react-router-dom`, and `npm` package. This React Portfolio should be run locally. Follow the steps outlined in the [Test](#test) section.
 
-* [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md), which uses [Babel](https://babeljs.io/) for Fast Refresh
-* [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc), which uses [SWC](https://swc.rs/) for Fast Refresh
+  ## Usage 
+  Here is an example screenshot of the Candidate Search App:
 
-## Expanding the ESLint configuration
+  ![Portfolio Screenshot](./src/assets/portfolio-screenshot.png)
+  
+  ## Contributing
+  The source of contributors I have used in this application:
+  * Stack Overlow
+  * W3School Website
+  * Dev Community Website
+  * ChatGPT
+  * Taillwindcss
+  
+  ## Test 
+  Navigate to the filepath of where the code is saved. Type the code below in the terminal, running each line of code separately.
 
-If you're developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+  ```bash
+  npm install
 
-* Configure the top-level `parserOptions` property as follows:
+  ```
 
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
+  Run the Application: 
 
-* Replace `plugin:@typescript-eslint/recommended` with `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`.
-* Optionally, add `plugin:@typescript-eslint/stylistic-type-checked`.
-* Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` and `plugin:react/jsx-runtime` to the `extends` list.
+  ``` bash 
+  npm run dev
 
----
-© 2024 edX Boot Camps LLC. Confidential and Proprietary. All Rights Reserved.
+  ``` 
+
+  ## License
+  This project is Licensed under the MIT License.
+  
+  ## Questions
+  Feel Free to contact me for any additional questions
+  * GitHub: [jbarry89](https://github.com/jbarry89/)
+  * Email: myEmail@gmail.com 
+
