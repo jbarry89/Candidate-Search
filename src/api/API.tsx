@@ -10,6 +10,7 @@ const searchGithub = async () => {
           Accept: "application/vnd.github.v3+json",
         },
       }
+      
     );
     // console.log('Response:', response);
     const data = await response.json();
