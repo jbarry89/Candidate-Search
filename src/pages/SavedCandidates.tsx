@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { Candidate } from "../interfaces/Candidate.interface";
-import { unstable_batchedUpdates } from "react-dom";
+import '../index.css';
 
 const SavedCandidates = () => {
   const [candidates, setCandidates] = useState<Candidate[]>([]);
@@ -26,7 +26,8 @@ const SavedCandidates = () => {
   return (
     <>
       <h1>Potential Candidates</h1>
-      <table className="candidate-table">
+    <div>
+      <table className="table">
         <thead>
           <tr>
             <th>Image</th>
@@ -39,20 +40,20 @@ const SavedCandidates = () => {
           </tr>
         </thead>
         <tbody>
-
+          {candidates.map((candidate, index) => (
+            <tr key={index}>
+              <td><img src={candidate.avatar_url} alt={`${candidate.login}'s avatar`} /></td>
+              <td>{candidate.name} <span>({candidate.login})</span></td>
+              <td>{candidate.location}</td>
+              <td>{candidate.email}</td>
+              <td>{candidate.company}</td>
+              <td>{candidate.bio}</td>
+              <td><button className="remove" onClick={() => handleReject(index)}>-</button></td>
+            </tr>  
+          ))}
         </tbody>
       </table>
-      {candidates.map((candidate, index) => (
-        <tr key={index}>
-          <td><img src={candidate.avatar_url} alt={`${candidate.login}'s avatar`} /></td>
-          <td>{candidate.name} <span>({candidate.login})</span></td>
-          <td>{candidate.location}</td>
-          <td>{candidate.email}</td>
-          <td>{candidate.company}</td>
-          <td>{candidate.bio}</td>
-          <td><button onClick={() => handleReject(index)}>-</button></td>
-        </tr>  
-      ))}
+    </div>
     </>
   );
 };

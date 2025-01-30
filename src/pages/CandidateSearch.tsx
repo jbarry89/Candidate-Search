@@ -1,15 +1,18 @@
-import { useState, useEffect } from 'react';
-import { searchGithub, searchGithubUser } from '../api/API';
-import { Candidate } from '../interfaces/Candidate.interface';
+import { useState, useEffect } from "react";
+import { searchGithub, searchGithubUser } from "../api/API";
+import { Candidate } from "../interfaces/Candidate.interface";
+import '../index.css';
 
 const CandidateSearch = () => {
   const [candidate, setCandidate] = useState<Candidate | null>(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError]= useState<string | null>(null);
-  const [potentialCandidates, setPotentialCandidates] = useState<Candidate[]>(() =>{
-    const savedCandidates = localStorage.getItem('potentialCandidates');
-    return savedCandidates ? JSON.parse(savedCandidates) : [];   
-  })
+  const [error, setError] = useState<string | null>(null);
+  const [potentialCandidates, setPotentialCandidates] = useState<Candidate[]>(
+    () => {
+      const savedCandidates = localStorage.getItem("potentialCandidates");
+      return savedCandidates ? JSON.parse(savedCandidates) : [];
+    }
+  );
 
   useEffect(() => {
     fetchCandidate();
@@ -19,24 +22,24 @@ const CandidateSearch = () => {
     try {
       setLoading(true);
       const candidates = await searchGithub();
-      if(candidates.length){
+      if (candidates.length) {
         const candidateData = await searchGithubUser(candidates[0].login);
         setCandidate(candidateData);
-      }else {
+      } else {
         setCandidate(null);
       }
-    }catch (err: any) {
+    } catch (err: any) {
       setError(err.message);
-    }finally{
+    } finally {
       setLoading(false);
     }
   };
 
   const handleSave = () => {
-    if (candidate){
-      setPotentialCandidates(prev => {
+    if (candidate) {
+      setPotentialCandidates((prev) => {
         const updated = [...prev, candidate];
-        localStorage.setItem('potentialCandidates', JSON.stringify(updated));
+        localStorage.setItem("potentialCandidates", JSON.stringify(updated));
         return updated;
       });
       fetchCandidate();
@@ -47,38 +50,39 @@ const CandidateSearch = () => {
     fetchCandidate();
   };
 
-  if(loading){
+  if (loading) {
     return <p>Loading...</p>;
   }
 
-  if(error){
+  if (error) {
     return <p>Error: {error}</p>;
   }
 
-
-  return(
-    <div className='card-container'>
-      <h1>CandidateSearch</h1>
-      {candidate ? (
-        <div className='candidate-card'>
-          <img src={candidate.avatar_url} alt={`${candidate.login}'s avatar`} className='avatar' />
-          <h2>{candidate.name} <span>({candidate.login})</span></h2>
-          <p>Location: {candidate.location}</p>
-          <p>Email: {candidate.email}</p>
-          <p>Company: {candidate.company}</p>
-          <p>Location: {candidate.location}</p>
-          <p>Bio: {candidate.bio}</p>
-        </div>
-      ): (
-        <p>No More Candidate available to Review.</p>
-      )} 
-      <div className='button-container'>
-        <button onClick={handleSave}>+</button>
-        <button onClick={handleSkip}>-</button>
+  return (
+    <>
+      <h1>Candidate Search</h1>
+      <div className="card-container">
+        {candidate ? (
+          <div className="candidate-card">
+            <img src={candidate.avatar_url} alt={`${candidate.login}'s avatar`} className="avatar"/>
+            <h2>
+              {candidate.name || "No Name Provided"}{" "}<span>({candidate.login})</span>
+            </h2>
+            <p>Location: {candidate.location || "Not Available"}</p>
+            <p>Email: {candidate.email || "Not Available"}</p>
+            <p>Company: {candidate.company || "Not Available"}</p>
+            <p>Bio: {candidate.bio || "No Bio Available"}</p>
+          </div>
+        ) : (
+          <p>No More Candidate available to Review.</p>
+        )}
       </div>
-    </div>
+        <div className="button-container">
+          <button className="add" onClick={handleSave}>+</button>
+          <button className="remove"onClick={handleSkip}>-</button>
+        </div>
+    </>
   );
-
 };
 
 export default CandidateSearch;
