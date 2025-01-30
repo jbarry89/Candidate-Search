@@ -1,5 +1,4 @@
-# My-Portfolio
-
+# Candidate-Search
   [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
   
   ## Table of Contents
@@ -21,7 +20,8 @@
   ## Usage 
   Here is an example screenshot of the Candidate Search App:
 
-  ![Portfolio Screenshot](./src/assets/portfolio-screenshot.png)
+  ![Candidate-Search/Home Screenshot](./src/assets/candidate-search-home.png)
+  ![Candidate-Search/SavedCandidate Screenshot](./src/assets/candidate-search-savedCandidates.png)
   
   ## Contributing
   The source of contributors I have used in this application:
@@ -32,7 +32,10 @@
   * Taillwindcss
   
   ## Test 
-  Navigate to the filepath of where the code is saved. Type the code below in the terminal, running each line of code separately.
+  Navigate to the filepath of where the code is saved. Before running the program, you must go to GitHub and generate a `fine-grained token`. Copy and paste the token in the `.env.EXAMPLE` file with the code `VITE_GITHUB_TOKEN=`. Then rename the file `.env`.
+  
+  Type the code below in the terminal, running each line of code separately.
+
 
   ```bash
   npm install
